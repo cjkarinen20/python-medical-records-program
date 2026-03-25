@@ -1,23 +1,18 @@
-from patient import Patient
-from datetime import datetime
+
 import FreeSimpleGUI as sg
+from data_functions import *
 
-patients = [Patient("Nimmi", "JingleBop", datetime(1990,1,6), 185, 90.3, True),
-           Patient("Joe", "Blough", datetime(2000,7,2), 185, 90.3, False),
-           Patient("Elfrick", "Belghini", datetime(1962,6,25), 185, 90.3, False)]
-def convert_patients_to_table_data():
-    patient_data = []
-    for patient in patients:
-        strings = patient.convert_info_to_strings()
-        patient_data.append(strings)
-    return patient_data
-#print(convert_patients_to_table_data())
+#Headings for the Patient information table.
+table_headings = ["First Name", "Last Name", "Date of Birth", "Height", "Weight", "Is Taking Medication?"]
 
-layout = [[sg.Text('Here is some text to display')]]
-window = sg.Window('Title Here', layout)
+table_data = convert_patients_to_table_data()
+
+#Properties for the Patient Window GUI.
+patient_window_layout = [[sg.Table(headings = table_headings, values = convert_patients_to_table_data())]]
+patient_window = sg.Window('Patient List', patient_window_layout)
 
 while True:
-    event, values = window.read()
+    event, values = patient_window.read()
     if event == sg.WIN_CLOSED:
         break
-window.close()
+patient_window.close()
