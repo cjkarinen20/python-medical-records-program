@@ -11,7 +11,7 @@ class Patient:
         self.taking_meds = taking_meds
         
     def convert_info_to_strings(self):
-        date_of_birth = datetime.strftime(self.date_of_birth, '%m/%d/%Y') #MM/DD/YYYY
+        date_of_birth = datetime.strftime(self.date_of_birth, '%Y/%m/%d/') #YYYY/MM/DD
         height = str(self.height)
         weight = str(self.weight)
         taking_meds = str(self.taking_meds)
