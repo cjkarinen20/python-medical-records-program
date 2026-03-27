@@ -1,6 +1,7 @@
 import FreeSimpleGUI as sg
+import patient_intake_form
 from data_functions import *
-
+ 
 #Headings for the Patient information table.
 table_headings = ["First Name", "Last Name", "Date of Birth", "Height", "Weight", "Is Taking Medication?"]
 
@@ -9,7 +10,7 @@ table_data = convert_patients_to_table_data()
 
 #Button to Add New Patients.
 def press_add_patient_button():
-    print("Button Pressed")
+    patient_intake_form.display_intake_form()
 
 #Properties for the Patient Window GUI.
 patient_window_layout = [
