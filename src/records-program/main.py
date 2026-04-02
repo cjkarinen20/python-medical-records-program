@@ -12,10 +12,8 @@ table_data = dataFunctions.convert_patients_to_table_data()
 def press_add_patient_button(patient_window):
     save_success = patientIntakeForm.display_intake_form()
     if save_success:
-        table_date = dataFunctions.convert_patients_to_table_data()
+        table_data = dataFunctions.convert_patients_to_table_data()
         patient_window["PATIENT_TABLE"].update(values = table_data)
-    else: 
-        print("ERROR: Could not create Patient.")
 
 #Properties for the Patient Window GUI.
 patient_window_layout = [

@@ -29,11 +29,18 @@ def display_intake_form():
     patient_intake_layout = create_layout()
     patient_intake_window = sg.Window("New Patient Form", patient_intake_layout)
     
+    save_success = False
+    
     while True:
         event, values = patient_intake_window.read()
         if event == sg.WIN_CLOSED or event == "Cancel":
             break
         elif event == "Save":
-            read_input_values(values)
+            save_success = read_input_values(values)
+            if save_success:
+                print("Patient Saved.")
             break
+        else:
+            print("Could not save patient, invalid input.")
     patient_intake_window.close()
+    return save_success
