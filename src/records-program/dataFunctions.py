@@ -15,6 +15,16 @@ def convert_patients_to_table_data():
         patient_data.append(strings)
     return patient_data
 
+# Delete patient and update list.
+def delete_patient(indices):
+    for index, item in enumerate(indices):
+        try:
+            del patients[item]
+        except IndexError:
+            return False
+    return True
+            
+
 # Validates input and attempts to create a patient.
 def try_to_create_patient(first_name, last_name, date_of_birth, height, weight, taking_medication):
     if len(first_name) < 2 or len(last_name) < 2 or date_of_birth == "" or height == "" or weight == "":
