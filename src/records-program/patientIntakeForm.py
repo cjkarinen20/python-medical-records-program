@@ -1,4 +1,5 @@
 import FreeSimpleGUI as sg
+import dataFunctions
 
 def read_input_values(values):
     first_name = values["FIRST_NAME"]
@@ -7,12 +8,7 @@ def read_input_values(values):
     height = values["HEIGHT"]
     weight = values["WEIGHT"]
     taking_medication = values["IS_TAKING_MEDICATION"]
-    print(first_name)
-    print(last_name)
-    print(date_of_birth)
-    print(height)
-    print(weight)
-    print(taking_medication)
+    dataFunctions.create_new_patient(first_name, last_name, date_of_birth, height, weight, taking_medication)
     
 #Create the Patient Intake Form.
 def create_layout():

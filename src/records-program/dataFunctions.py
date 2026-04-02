@@ -14,3 +14,12 @@ def convert_patients_to_table_data():
         strings = patient.convert_info_to_strings()
         patient_data.append(strings)
     return patient_data
+
+def create_new_patient(first_name, last_name, date_of_birth, height, weight, taking_medication):
+    date_of_birth = datetime.strptime(date_of_birth, '%m/%d/%Y')
+    height = int(height)
+    weight = float(weight)
+    taking_medication = True if taking_medication == "True" else False
+    
+    patient = Patient(first_name, last_name, date_of_birth, height, weight, taking_medication)
+    patients.append(patient)
