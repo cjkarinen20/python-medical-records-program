@@ -18,12 +18,19 @@ def press_add_patient_button(patient_window):
 # Button to Delete Patients.
 def press_delete_patient_button(patient_window):
     selected_indices = values["PATIENT_TABLE"]
-    delete_success = dataFunctions.delete_patient(selected_indices)
-    if delete_success:
-        table_data = dataFunctions.convert_patients_to_table_data()
-        patient_window["PATIENT_TABLE"].update(values = table_data)
+    if not selected_indices: 
+        sg.popup('Please select an entry to delete.')
     else:
-        print("Could not delete patient: invalid index.")
+        dialogChoice = sg.popup_yes_no("Do you want to delete this entry?", title="Confirm Deletion")
+        if dialogChoice == "Yes":
+            delete_success = dataFunctions.delete_patient(selected_indices)
+            if delete_success:
+                table_data = dataFunctions.convert_patients_to_table_data()
+                patient_window["PATIENT_TABLE"].update(values = table_data)
+            else:
+                print("Could not delete patient: invalid index.")
+        elif dialogChoice == "No":
+            return
     
 # Properties for the Patient Window GUI.
 patient_window_layout = [
