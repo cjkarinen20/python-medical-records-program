@@ -19,3 +19,5 @@ class Patient:
         taking_meds = str(self.taking_meds)
         
         return [self.first_name, self.last_name, date_of_birth, height, weight, taking_meds]
+    
+    

@@ -1,5 +1,6 @@
 import FreeSimpleGUI as sg
 import dataFunctions
+from datetime import datetime
 
 # Reads the input fields and pass them to try_to_create_patient.
 def read_input_values(values):
@@ -29,7 +30,7 @@ def load_layout(patient):
     return [
     [sg.Text("First Name"), sg.Input(patient.first_name, key = "FIRST_NAME")],
     [sg.Text("Last Name"), sg.Input(patient.last_name, key = "LAST_NAME")],
-    [sg.Text("Date Of Birth"), sg.Input(patient.date_of_birth, key = "DATE_OF_BIRTH"), 
+    [sg.Text("Date Of Birth"), sg.Input(datetime.strftime(patient.date_of_birth, '%m/%d/%Y'), key = "DATE_OF_BIRTH"), 
     sg.CalendarButton("Select Date", format = '%m/%d/%Y')],
     [sg.Text("Height"), sg.Input(patient.height, key = "HEIGHT")],
     [sg.Text("Weight"), sg.Input(patient.weight, key = "WEIGHT")],

@@ -25,6 +25,7 @@ def press_edit_patient_button(patient_window):
         sg.popup("Please select only ONE entry to edit.", title = "Too Many Selections.")
     else:
         patient = dataFunctions.retrieve_patient_selection(selected_indices)
+        dataFunctions.delete_patient(selected_indices)
         save_success = patientIntakeForm.load_intake_form(patient)
         if save_success:
             table_data = dataFunctions.convert_patients_to_table_data()

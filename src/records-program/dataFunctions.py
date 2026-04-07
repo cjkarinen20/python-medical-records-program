@@ -53,5 +53,6 @@ def try_to_create_patient(first_name, last_name, date_of_birth, height, weight, 
         
         return True
     
-    except:
+    except Exception as e:
+        print(e)
         return False
