@@ -51,12 +51,36 @@ def press_delete_patient_button(patient_window, values):
 # Properties for the Patient Window GUI.
 patient_window_layout = [
     [sg.Text("All Patient Data"), sg.Button("Add New Patient"), sg.Button("Edit Patient"), sg.Button("Delete Patient")],
-    [sg.Table(headings = table_headings, values = table_data, key = "PATIENT_TABLE", enable_events = True)]]
+    [sg.Table(headings = table_headings, values = table_data, key = "PATIENT_TABLE", enable_events = True, enable_click_events = True)]]
 patient_window = sg.Window('Patient List', patient_window_layout)
+
+# Tracking variables for table column sort
+last_col_clicked = -1
+is_ascending = True
 
 # Display Patient Window.
 while True:
     event, values = patient_window.read()
+    
+    if isinstance(event, tuple) and event[0] == "PATIENT_TABLE":
+        
+        # event[2] = (row, col)
+        row, col = event[2]
+        
+        if row == -1 and col is not None:
+            # If clicking same column, toggle direction
+            if col == last_col_clicked:
+                is_ascending = not is_ascending
+            else:
+                # If click new column, default to ascending
+                is_ascending = True
+                last_col_clicked = col
+                
+            table_data = sorted(table_data, key=lambda x: x[col], reverse=not is_ascending) # Sort table_data
+            
+            # Refresh Table Graphics
+            patient_window["PATIENT_TABLE"].update(values=table_data)
+            
     if event == sg.WIN_CLOSED:
         break
     elif event == "Add New Patient":
