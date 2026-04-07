@@ -27,14 +27,14 @@ def create_layout():
 # Create Patient Intake Form and load values from an existing patient (for edit feature)
 def load_layout(patient):
     return [
-    [sg.Text("First Name"), sg.Input(text = patient.first_name, key = "FIRST_NAME")],
-    [sg.Text("Last Name"), sg.Input(text = patient.last_name, key = "LAST_NAME")],
-    [sg.Text("Date Of Birth"), sg.Input(text = patient.date_of_birth, key = "DATE_OF_BIRTH"), 
+    [sg.Text("First Name"), sg.Input(patient.first_name, key = "FIRST_NAME")],
+    [sg.Text("Last Name"), sg.Input(patient.last_name, key = "LAST_NAME")],
+    [sg.Text("Date Of Birth"), sg.Input(patient.date_of_birth, key = "DATE_OF_BIRTH"), 
     sg.CalendarButton("Select Date", format = '%m/%d/%Y')],
-    [sg.Text("Height"), sg.Input(text = patient.height, key = "HEIGHT")],
-    [sg.Text("Weight"), sg.Input(text = patient.weight, key = "WEIGHT")],
+    [sg.Text("Height"), sg.Input(patient.height, key = "HEIGHT")],
+    [sg.Text("Weight"), sg.Input(patient.weight, key = "WEIGHT")],
     [sg.Text("Is Taking Medication?"), sg.Checkbox("Yes", default = patient.taking_meds, key = "IS_TAKING_MEDICATION")],
-    [sg.Cancel(), sg.Button("Save Edits")]]
+    [sg.Cancel(), sg.Button("Save")]]
 
 # Create patient intake form, display it, and capture user input.
 def display_new_intake_form():
@@ -59,7 +59,7 @@ def display_new_intake_form():
 
 def load_intake_form(patient):
     patient_edit_layout = load_layout(patient)
-    patient_edit_window = sg.Window("Edit Patient Form")
+    patient_edit_window = sg.Window("Edit Patient Form", patient_edit_layout)
     
     save_success = False
     

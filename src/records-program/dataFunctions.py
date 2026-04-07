@@ -25,7 +25,10 @@ def delete_patient(indices):
     return True
             
 # Retrieve selected patient entry.
-# def retrieve_patient_selection
+def retrieve_patient_selection(indices):
+    patient_index = indices[0]
+    selected_patient = patients[patient_index]
+    return selected_patient
 
 # Validates input and attempts to create a patient.
 def try_to_create_patient(first_name, last_name, date_of_birth, height, weight, taking_medication):

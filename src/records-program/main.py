@@ -21,14 +21,17 @@ def press_edit_patient_button(patient_window):
     
     if not selected_indices: # No patient entry was selected.
         sg.popup("Please select an entry to edit.", title = "No Selection.")
+    elif len(selected_indices) > 1: # More than one entry was selected.
+        sg.popup("Please select only ONE entry to edit.", title = "Too Many Selections.")
     else:
-        save_success = patientIntakeForm.display_new_intake_form()
+        patient = dataFunctions.retrieve_patient_selection(selected_indices)
+        save_success = patientIntakeForm.load_intake_form(patient)
         if save_success:
             table_data = dataFunctions.convert_patients_to_table_data()
             patient_window["PATIENT_TABLE"].update(values = table_data)
 
 # Button to Delete Patients.
-def press_delete_patient_button(patient_window):
+def press_delete_patient_button(patient_window, values):
     selected_indices = values["PATIENT_TABLE"]
     if not selected_indices: # No patient entry was selected.
         sg.popup("Please select an entry to delete.", title = "No Selection.")
